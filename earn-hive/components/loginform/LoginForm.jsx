@@ -25,7 +25,7 @@ const LoginForm = () => {
       </button>
 
       <div className="text-[#5D7186]">
-        Don't have an account? <a href="#" className="text-[#E2AE22] font-bold">Sign up</a>
+        Dont have an account? <a href="#" className="text-[#E2AE22] font-bold">Sign up</a>
       </div>
 
     </form>
