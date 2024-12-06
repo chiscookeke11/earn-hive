@@ -114,3 +114,7 @@ text-decoration-skip-ink: none;
 .login-form button:active{
     transform: scale(0.9);
 }
+.error{
+  font-size: 0.8rem;
+  color: red;
+}
