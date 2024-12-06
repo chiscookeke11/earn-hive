@@ -38,6 +38,7 @@
   font-size: 1rem;
   color: #313B5E;
   line-height: 21px;
+  font-family:  'Poppins', sans-serif;
 }
 .input-holder input::placeholder{
     font-size: 0.9rem;

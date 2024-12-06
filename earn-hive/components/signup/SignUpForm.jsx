@@ -1,19 +1,36 @@
 "use client";
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaEyeSlash, FaEye } from 'react-icons/fa';
 import "./signUp.css";
 
 const SignUpForm = () => {
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+    termsAccepted: false
+  });
   const [error, setError] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    validateForm();
+  }, [formData]);
+
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-    if (confirmPassword && e.target.value !== confirmPassword) {
+    handleInputChange(e);
+    if (formData.confirmPassword && e.target.value !== formData.confirmPassword) {
       setError("Passwords don't match");
     } else {
       setError('');
@@ -21,8 +38,8 @@ const SignUpForm = () => {
   };
 
   const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-    if (password && e.target.value !== password) {
+    handleInputChange(e);
+    if (formData.password && e.target.value !== formData.password) {
       setError("Passwords don't match");
     } else {
       setError('');
@@ -37,8 +54,26 @@ const SignUpForm = () => {
     setIsConfirmPasswordVisible(prevState => !prevState);
   };
 
+  const validateForm = () => {
+    const isValid = 
+      formData.email.trim() !== '' &&
+      formData.password.trim() !== '' &&
+      formData.confirmPassword.trim() !== '' &&
+      formData.password === formData.confirmPassword &&
+      formData.termsAccepted;
+    setIsFormValid(isValid);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isFormValid) {
+      // Handle form submission
+      console.log('Form submitted:', formData);
+    }
+  };
+
   return (
-    <form className="signup-form">
+    <form className="signup-form" onSubmit={handleSubmit}>
       {/* Email Field */}
       <div className="input-holder">
         <label htmlFor="Email">
@@ -49,6 +84,9 @@ const SignUpForm = () => {
           id="Email"
           name="email"
           placeholder="Enter Email"
+          value={formData.email}
+          onChange={handleInputChange}
+          required
         />
       </div>
 
@@ -63,9 +101,10 @@ const SignUpForm = () => {
             id="Password"
             name="password"
             placeholder="Enter Password"
-            value={password}
+            value={formData.password}
             onChange={handlePasswordChange}
             style={{ borderColor: error ? 'red' : '' }}
+            required
           />
           <span
             onClick={togglePasswordVisibility}
@@ -94,9 +133,10 @@ const SignUpForm = () => {
             id="ConfirmPassword"
             name="confirmPassword"
             placeholder="Confirm Password"
-            value={confirmPassword}
+            value={formData.confirmPassword}
             onChange={handleConfirmPasswordChange}
             style={{ borderColor: error ? 'red' : '' }}
+            required
           />
           <span
             onClick={toggleConfirmPasswordVisibility}
@@ -122,17 +162,29 @@ const SignUpForm = () => {
           type="checkbox"
           id="checkbox"
           name="termsAccepted"
+          checked={formData.termsAccepted}
+          onChange={handleInputChange}
           required
         />
         <label htmlFor="checkbox">Accept Terms and conditions</label>
       </div>
 
       {/* Submit Button */}
-      <button type="submit" disabled={!!error}>Create Account</button>
+      <button 
+        type="submit" 
+        disabled={!isFormValid}
+        style={{
+          filter: isFormValid ? 'none' : 'grayscale(100%)',
+          opacity: isFormValid ? 1 : 0.5,
+          transition: 'all 0.3s ease'
+        }}
+      >
+        Create Account
+      </button>
 
       {/* Sign Up Link */}
       <div className="text-[#5D7186]">
-        Dont have an account?{" "}
+        Don't have an account?{" "}
         <Link href="/" className="text-[#E2AE22] font-bold">
           Sign in
         </Link>
