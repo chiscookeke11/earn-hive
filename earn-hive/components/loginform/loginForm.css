@@ -61,8 +61,32 @@
     cursor: pointer;
     border: 1px solid #E7E7E7;
     outline: none;
-    border-radius: 10px;
+    border-radius: 4px;
+    cursor: pointer;
 }
+input[type="checkbox"] {
+    appearance: none; 
+    background-color: #f0f0f0;
+    border: 1px solid #E7E7E7; 
+  }
+  
+  input[type="checkbox"]:checked {
+    background-color: #F08A00;
+    border-color: #F08A00;
+    position: relative;
+  }
+  
+  input[type="checkbox"]:checked::after {
+    content: '✔'; 
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+
 .terms label{
     color: #313B5E;
 font-size: 0.9rem;
