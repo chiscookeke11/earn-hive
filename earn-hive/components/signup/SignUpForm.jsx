@@ -132,7 +132,7 @@ const SignUpForm = () => {
 
       {/* Sign Up Link */}
       <div className="text-[#5D7186]">
-        Don't have an account?{" "}
+        Dont have an account?{" "}
         <Link href="/" className="text-[#E2AE22] font-bold">
           Sign in
         </Link>
