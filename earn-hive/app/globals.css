@@ -73,7 +73,37 @@ text-decoration-skip-ink: none;
 z-index: 1;
 color: #313B5E;
 }
-
+.shapes{
+  top: 5%;
+  right: 4%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.shapes img{
+  width: 56px;
+  height: 56px;
+}
+.border-circle{
+  background-color: #fff;
+  border: 1px solid #FE9431;
+  width: 48px;
+  height: 48px;
+  min-width: 20px;
+  min-height: 20px;
+  border-radius: 50%;
+  margin-bottom: -15px;
+}
+.shapes .triangle {
+  width: 0px; 
+  height: 0px;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 25.8px solid #7272A8; 
+  margin-bottom: -5px;
+  transform: rotate(-15deg);
+}
 
 
 
@@ -140,4 +170,20 @@ color: #313B5E;
     width: 60px;
     height:60px;
   }
+  .shapes img{
+    width: 40px;
+    height: 40px;
+  }
+  .border-circle{
+    width: 28px;
+    height: 28px;
+  }
+  .shapes .triangle {
+    width: 0px; 
+    height: 0px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 20px solid #7272A8; 
+  }
+  
 }

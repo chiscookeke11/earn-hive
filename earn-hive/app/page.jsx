@@ -31,6 +31,15 @@ const page = () => {
     <Image src="https://res.cloudinary.com/dwedz2laa/image/upload/v1733434624/ani-18.png_plqtce.png" alt="" width={100} height={100} />
 </div>
 
+
+
+<div className="img shapes">
+    <div className="border-circle"></div>
+    <div className='triangle'></div>
+    <Image src="https://res.cloudinary.com/dwedz2laa/image/upload/v1733434625/brown_circle.svg_fill_u3j52w.png" alt="" width={100} height={100} />
+</div>
+
+
     </div>
   )
 }
