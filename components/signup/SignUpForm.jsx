@@ -1,19 +1,20 @@
 "use client";
-import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
-import { FaEyeSlash, FaEye } from 'react-icons/fa';
+import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import { FaEyeSlash, FaEye } from "react-icons/fa";
 import "./signUp.css";
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    confirmPassword: '',
-    termsAccepted: false
+    email: "",
+    password: "",
+    confirmPassword: "",
+    termsAccepted: false,
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
+    useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
@@ -22,18 +23,21 @@ const SignUpForm = () => {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prevData => ({
+    setFormData((prevData) => ({
       ...prevData,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handlePasswordChange = (e) => {
     handleInputChange(e);
-    if (formData.confirmPassword && e.target.value !== formData.confirmPassword) {
+    if (
+      formData.confirmPassword &&
+      e.target.value !== formData.confirmPassword
+    ) {
       setError("Passwords don't match");
     } else {
-      setError('');
+      setError("");
     }
   };
 
@@ -42,23 +46,23 @@ const SignUpForm = () => {
     if (formData.password && e.target.value !== formData.password) {
       setError("Passwords don't match");
     } else {
-      setError('');
+      setError("");
     }
   };
 
   const togglePasswordVisibility = () => {
-    setIsPasswordVisible(prevState => !prevState);
+    setIsPasswordVisible((prevState) => !prevState);
   };
 
   const toggleConfirmPasswordVisibility = () => {
-    setIsConfirmPasswordVisible(prevState => !prevState);
+    setIsConfirmPasswordVisible((prevState) => !prevState);
   };
 
   const validateForm = () => {
-    const isValid = 
-      formData.email.trim() !== '' &&
-      formData.password.trim() !== '' &&
-      formData.confirmPassword.trim() !== '' &&
+    const isValid =
+      formData.email.trim() !== "" &&
+      formData.password.trim() !== "" &&
+      formData.confirmPassword.trim() !== "" &&
       formData.password === formData.confirmPassword &&
       formData.termsAccepted;
     setIsFormValid(isValid);
@@ -68,7 +72,7 @@ const SignUpForm = () => {
     e.preventDefault();
     if (isFormValid) {
       // Handle form submission
-      console.log('Form submitted:', formData);
+      console.log("Form submitted:", formData);
     }
   };
 
@@ -103,7 +107,7 @@ const SignUpForm = () => {
             placeholder="Enter Password"
             value={formData.password}
             onChange={handlePasswordChange}
-            style={{ borderColor: error ? 'red' : '' }}
+            style={{ borderColor: error ? "red" : "" }}
             required
           />
           <span
@@ -135,7 +139,7 @@ const SignUpForm = () => {
             placeholder="Confirm Password"
             value={formData.confirmPassword}
             onChange={handleConfirmPasswordChange}
-            style={{ borderColor: error ? 'red' : '' }}
+            style={{ borderColor: error ? "red" : "" }}
             required
           />
           <span
@@ -153,7 +157,11 @@ const SignUpForm = () => {
           </span>
         </div>
         {/* Display Error if Passwords don't match */}
-        {error && <div className="error-message text-red-600 text-[0.9rem]">{error}</div>}
+        {error && (
+          <div className="error-message text-red-600 text-[0.9rem]">
+            {error}
+          </div>
+        )}
       </div>
 
       {/* Terms and Conditions */}
@@ -170,13 +178,13 @@ const SignUpForm = () => {
       </div>
 
       {/* Submit Button */}
-      <button 
-        type="submit" 
+      <button
+        type="submit"
         disabled={!isFormValid}
         style={{
-          filter: isFormValid ? 'none' : 'grayscale(100%)',
+          filter: isFormValid ? "none" : "grayscale(100%)",
           opacity: isFormValid ? 1 : 0.5,
-          transition: 'all 0.3s ease'
+          transition: "all 0.3s ease",
         }}
       >
         Create Account
@@ -184,8 +192,8 @@ const SignUpForm = () => {
 
       {/* Sign Up Link */}
       <div className="text-[#5D7186]">
-        Don't have an account?{" "}
-        <Link href="/" className="text-[#E2AE22] font-bold">
+        {" Don't "}have an account?{" "}
+        <Link href="/sign-in" className="text-[#E2AE22] font-bold">
           Sign in
         </Link>
       </div>
@@ -194,4 +202,3 @@ const SignUpForm = () => {
 };
 
 export default SignUpForm;
-
