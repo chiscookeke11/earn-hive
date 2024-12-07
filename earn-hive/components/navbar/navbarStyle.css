@@ -6,6 +6,7 @@ nav {
   align-items: center;
   color: #00000080;
   border-bottom: 1px solid #fff0d0;
+  font-family: 'Rubik', sans-serif;
 }
 nav ul {
   display: flex;
